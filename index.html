@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./demo-files/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+  <script src="reac-ter.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>reac-ter demo</h1>
+    <div>
+      Project Name: {{ projectName }}
+    </div>
+    <div :class="{alarm: temperatureAlarm}">
+      System Room Temperature: {{ systemRoomTemperature }} °F
+    </div>
+    <hr>
+    <div :class="{alarm: edidtedProjectNameAlarm}">
+      <span>New Name: <span> <input v-model="editedProjectName" @change="newProjectName"> <button
+            @click="resetProjectName">Reset</button>
+    </div>
+  </div>
+</body>
+<script src="./demo-files/demo.js"></script>
+<title>Document</title>
+
+</html>

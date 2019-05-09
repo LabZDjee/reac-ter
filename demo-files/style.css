@@ -1,0 +1,28 @@
+body {
+  font-family: arial;
+  font-weight: bold;
+  background-color: gray;
+  background-image: url("logo.png");
+  background-repeat: no-repeat;
+}
+
+div#app {
+  background-color: black;
+  color: lightgreen;
+  margin: 20px auto 50px auto;
+  max-width: 400px;
+  text-align: center;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 4px 4px white;
+}
+
+h1 {
+  background-color: darkgray;
+  color: white;
+  margin: 10px 30px 30px 30px;
+}
+
+.alarm {
+  color: red;
+}
