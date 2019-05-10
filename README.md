@@ -125,5 +125,14 @@ For example, let's take an object `contents` imported from a module and a compon
 
 It seems simple and convenient to bind `$data.xyzt` to `contents.x.y.z.t` this way:
 
-- instead of importing `contents`, import a reac-ter `rContents` which is bound to all of part of `contents`. For example `rContents.addProperty(contents.x.y.z, "t", "xyzt");`
-- in component `created` method: `rContents.$watchers.xyzt.push((v) => {this.xyzt=v;});` and initialize `$data.xyzt` with `rContents.xyzt`
+instead of importing `contents`, import a reac-ter `rContents` which is bound to all of part of `contents`. For example `rContents.addProperty(contents.x.y.z, "t", "xyzt");`
+
+in component `created` method: `rContents.$watchers.xyzt.push((v) => {this.xyzt=v;});` and initialize `$data.xyzt` with `rContents.xyzt`
+
+### Demo
+
+A sample demo can be seen here: https://labzdjee.github.io/reac-ter
+
+In this demo, we have a external object `configuration` and a simple **Vue.js** app is only interested in two pieces of data from this external object. A timer modifies one piece of external data to check the proper update. A two-way binding with an `input` is also done with a filter function (hand-made, not a *Vue* filter) which controls the input conformance 
+
+Its code is located in `index.html` and `demo-files` subfolder
