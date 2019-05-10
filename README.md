@@ -4,9 +4,9 @@ Simple class which allows to setup accessors to any object property and then hoo
 
 This is done with only one class: `ReacTer`. Code in written in ES2015 (ECMAScript 6) and has no dependency
 
-![](.\principle.svg)
+![](./principle.svg)
 
-Picture above shows a `ReacTer` instance which bears keys `a` and `bAlias` with no actual values but getters and setters to other object. It also shows those setters will trigger customer functions stored in arrays under `$watchers.a` and `$watchers.bAlias`
+Picture above (principle.svg) shows a `ReacTer` instance which bears keys `a` and `bAlias` with no actual values but getters and setters to other object. It also shows those setters will trigger customer functions stored in arrays under `$watchers.a` and `$watchers.bAlias`
 
 ## Sample code
 
