@@ -113,7 +113,7 @@ Return a boolean, `true` in case of success (meaning the `keyOrAlias` was a vali
 
 ## Installation
 
-`npm install --save reac-ter`
+`npm install --save @labzdjee/reac-ter`
 
 ## Use case
 
