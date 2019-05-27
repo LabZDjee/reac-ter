@@ -6,11 +6,11 @@ This is done with only one class: `ReacTer`. Code in written in ES2015 (ECMAScri
 
 ![](./principle.svg)
 
-Picture above (principle.svg) shows a `ReacTer` instance which bears keys `a` and `bAlias` with no actual values but getters and setters to other object. It also shows those setters will trigger customer functions stored in arrays under `$watchers.a` and `$watchers.bAlias`
+If visible, picture above (principle.svg) shows a `ReacTer` instance which bears keys `a` and `bAlias` with no actual values but getters and setters to other object. It also shows those setters will trigger customer functions stored in arrays under `$watchers.a` and `$watchers.bAlias`
 
 ## Sample code
 
-```
+```javascript
 const ReacTer = require("reac-ter");
 // one object with some properties
 const obj = { b: 2, c: { x: 3, y: 4 } };
@@ -71,7 +71,7 @@ rter[1] = 6; // prints: "onArray new value: 6"
 
 Add external accessors to any property of key **"k"** of any object **obj** by allowing to add a setter/getter in instance of this class with same key **"k"** (or possibly an _alias_). Method for such tracking **obj.k**: `addProperty(obj, "k")`\*
 
-Interest of this class lays in its `$watchers` instance property which contains the very same keys **"k"**. Each of those properties `$watcher["k"]` is an array which can contain callback functions which are called upon invoking the setter for key **"k"** of class instance property
+Interest of this class lays in its `$watchers` instance property which contains the very same keys **"k"**. Each of those properties `$watcher["k"]` is an array which can contain callback functions which are called upon invoking the setter for property key **"k"** of class instance
 
 Prototype of those callback functions: `f(oldValue, newValue, key)`
 
@@ -79,7 +79,7 @@ It's up to users to populate array `$watcher["k"]` with their callback functions
 
 ### Constructor
 
-Without parameter (or parameter = `false`): only installs `$watchers` on setters, then
+Without parameter (or parameter = `false`): only installs `$watchers`, on setters, then
 
 With parameter `true`: installs `$watchers` on setters, and `$getWatchers` on getters
 
@@ -89,7 +89,7 @@ Prototype `addProperty(obj, key, alias=undefined)`
 
 Attach `obj[key]`, with possibly `alias` as property key of this instance for `obj[key]`
 
-Caveats: call this function with same property (or alias if any) will `throw` an exception. `deleteProperty` should be called before. This function also throws `obj` is not an object
+Caveats: call this function with same property key (or alias if any) will `throw` an exception. `deleteProperty` should be called before. This function also throws if `obj` is not an object
 
 ### `$watchers`
 
@@ -109,7 +109,7 @@ Prototype `deleteProperty(keyOrAlias)`
 
 Remove property accessors from the instance. In case of alias, pass alias, otherwise the key name given when addition was done
 
-Return a boolean, `true` in case of success (meaning the `keyOrAlias` was a valid property of the instance and its has been removed as well). Ensures cleaning in `$watchers` and `$getWatchers`
+Return a boolean, `true` in case of success (meaning the `keyOrAlias` was a valid property of the instance and it has been removed as well). Ensures cleaning in `$watchers` and `$getWatchers`
 
 ## Installation
 
@@ -121,18 +121,18 @@ This class has been written with **Vue.js** in mind
 
 It allows to bind `$data` values in components to selected bits of external (potentially complex and big) objects and then have a streamlined binding between the external object and `$data`
 
-For example, let's take an object `contents` imported from a module and a component interested in `contents.x.y.z.t` only for example used as a `v-model` and why not something more complex (:class...)
+For example, let's take an object `contents` imported from a module and a component interested in `contents.x.y.z.t` only for example used as a `v-model` and why not something more complex (`:class`...)
 
 It seems simple and convenient to bind `$data.xyzt` to `contents.x.y.z.t` this way:
 
-instead of importing `contents`, import a reac-ter `rContents` which is bound to all of part of `contents`. For example `rContents.addProperty(contents.x.y.z, "t", "xyzt");`
+- instead of importing `contents`, import a reac-ter `rContents` which is bound to all or part of `contents`. For example `rContents.addProperty(contents.x.y.z, "t", "xyzt");`
 
-in component `created` method: `rContents.$watchers.xyzt.push((v) => {this.xyzt=v;});` and initialize `$data.xyzt` with `rContents.xyzt`
+- in component `created` method: `rContents.$watchers.xyzt.push((v) => {this.xyzt=v;});` and initialize `$data.xyzt` with `rContents.xyzt`
 
 ### Demo
 
 A sample demo can be seen here: https://labzdjee.github.io/reac-ter
 
-In this demo, we have a external object `configuration` and a simple **Vue.js** app is only interested in two pieces of data from this external object. A timer modifies one piece of external data to check the proper update. A two-way binding with an `input` is also done with a filter function (hand-made, not a *Vue* filter) which controls the input conformance 
+In this demo, we have a external object `configuration` and a simple **Vue.js** app which is only interested in two pieces of data from this external object. A timer modifies one piece of external data to check the proper update. A two-way binding with an `input` is also done with a filter function (hand-made, not a _Vue_ filter) which controls the input conformance
 
-Its code is located in `index.html` and `demo-files` subfolder
+Demo code is located in `index.html` and `demo-files` subfolder of source code
