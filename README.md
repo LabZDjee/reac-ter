@@ -71,17 +71,19 @@ rter[1] = 6; // prints: "onArray new value: 6"
 
 Add external accessors to any property of key **"k"** of any object **obj** by allowing to add a setter/getter in instance of this class with same key **"k"** (or possibly an _alias_). Method for such tracking **obj.k**: `addProperty(obj, "k")`\*
 
-Interest of this class lays in its `$watchers` instance property which contains the very same keys **"k"**. Each of those properties `$watcher["k"]` is an array which can contain callback functions which are called upon invoking the setter for property key **"k"** of class instance
+Interest of this class lays in its `$watchers` instance property which contains the very same keys **"k"**. Each of those properties `$watchers["k"]` is an array which can contain callback functions which are called upon invoking the setter for property key **"k"** of class instance
 
-Prototype of those callback functions: `f(oldValue, newValue, key)`
+Prototype of those callback functions: `f(newValue, oldValue, key)`
 
-It's up to users to populate array `$watcher["k"]` with their callback functions
+It's up to users to populate array `$watchers["k"]` with their callback functions
 
 ### Constructor
 
 Without parameter (or parameter = `false`): only installs `$watchers`, on setters, then
 
 With parameter `true`: installs `$watchers` on setters, and `$getWatchers` on getters
+
+Prototype of callback functions for getters: `f(value, key)`
 
 ### `addProperty`
 
