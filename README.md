@@ -69,21 +69,19 @@ rter[1] = 6; // prints: "onArray new value: 6"
 
 ### Presentation
 
-Add external accessors to any property of key **"k"** of any object **obj** by allowing to add a setter/getter in instance of this class with same key **"k"** (or possibly an _alias_). Method for such tracking **obj.k**: `addProperty(obj, "k")`\*
+Add external accessors to any property of key **"k"** of any object **obj** by allowing to add a setter/getter in instance of this class with same key **"k"** (or possibly an _alias_). Method for such tracking **obj.k**: `addProperty(obj, "k")`
 
-Interest of this class lays in its `$watchers` instance property which contains the very same keys **"k"**. Each of those properties `$watchers["k"]` is an array which can contain callback functions which are called upon invoking the setter for property key **"k"** of class instance
+Interest of this class lays in its `$watchers` instance property which contains the very same keys **"k"**. Each of those properties `$watcher["k"]` is an array which can contain callback functions which are called upon invoking the setter for property key **"k"** of class instance
 
-Prototype of those callback functions: `f(newValue, oldValue, key)`
+Prototype of those callback functions: `f(newValue, oldValue, key)`, *key* is the alias if any
 
-It's up to users to populate array `$watchers["k"]` with their callback functions
+It's up to users to populate array `$watcher["k"]` with their callback functions
 
 ### Constructor
 
-Without parameter (or parameter = `false`): only installs `$watchers`, on setters, then
+Without parameter (or parameter = `false`): only installs `$watchers`, on setters
 
 With parameter `true`: installs `$watchers` on setters, and `$getWatchers` on getters
-
-Prototype of callback functions for getters: `f(value, key)`
 
 ### `addProperty`
 
@@ -91,7 +89,7 @@ Prototype `addProperty(obj, key, alias=undefined)`
 
 Attach `obj[key]`, with possibly `alias` as property key of this instance for `obj[key]`
 
-Caveats: call this function with same property key (or alias if any) will `throw` an exception. `deleteProperty` should be called before. This function also throws if `obj` is not an object
+Caveats: calling this function again with same property key (or alias if any) will `throw` an exception. `deleteProperty` should be called before. This function also throws if `obj` is not an object
 
 ### `$watchers`
 
@@ -103,6 +101,8 @@ This special property is not enumerable
 
 Object containing attached properties (or aliases). Each property is an array which can/should contain callback functions fired upon getting property's contents through this class instance
 
+Prototype of those callback functions: `f(value, key)`, *key* is the alias if any
+
 This special property is not enumerable
 
 ### `deleteProperty`
@@ -111,7 +111,7 @@ Prototype `deleteProperty(keyOrAlias)`
 
 Remove property accessors from the instance. In case of alias, pass alias, otherwise the key name given when addition was done
 
-Return a boolean, `true` in case of success (meaning the `keyOrAlias` was a valid property of the instance and it has been removed as well). Ensures cleaning in `$watchers` and `$getWatchers`
+Return a *boolean*, `true` in case of success (meaning the `keyOrAlias` was a valid property of the instance and it has been removed as well). Ensures cleaning in `$watchers` and `$getWatchers`
 
 ## Installation
 

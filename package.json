@@ -1,7 +1,7 @@
 {
   "name": "@labzdjee/reac-ter",
-  "version": "1.0.1",
-  "description": "ES6 class to make accessors bound to object attributes with function hooks attached to setters (and getters)",
+  "version": "1.0.2",
+  "description": "ES6 class to make accessors bound to object attributes with function hooks attached to setters (and optionally getters)",
   "main": "reac-ter.js",
   "scripts": {
     "test": "mocha"
